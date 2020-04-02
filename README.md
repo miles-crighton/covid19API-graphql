@@ -1,6 +1,6 @@
 # GraphQL wrapper for Covid19 REST API
 
-The Covid19 API: [https://covid19api.com/#details](https://covid19api.com/#details)
+The Covid19 public API: [https://covid19api.com/#details](https://covid19api.com/#details)
 
 This currently only for learning purposes.
 
