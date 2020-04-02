@@ -2,7 +2,6 @@ const express = require("express");
 const axios = require("axios");
 const { ApolloServer, gql } = require("apollo-server-express");
 
-// Construct a schema, using GraphQL schema language
 const typeDefs = gql`
     type Query {
         summary(countries: [String]): [Summary]
@@ -20,7 +19,6 @@ const typeDefs = gql`
     }
 `;
 
-// Provide resolver functions for your schema fields
 const resolvers = {
     Summary: {
         Country: parent => {
@@ -54,7 +52,6 @@ const resolvers = {
                 "https://api.covid19api.com/summary",
                 {}
             );
-            console.log(countries);
             let countryData = res.data.Countries;
             countryData = countryData.filter(countrySummary => {
                 return countries.includes(countrySummary.Country);
