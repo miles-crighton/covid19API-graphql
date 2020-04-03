@@ -1,6 +1,8 @@
 const express = require("express");
 const axios = require("axios");
 const { ApolloServer } = require("apollo-server-express");
+const { makeExecutableSchema } = require("graphql-tools");
+
 const typeDefs = require("./schema");
 const resolvers = require("./resolvers");
 
