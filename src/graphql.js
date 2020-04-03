@@ -1,6 +1,6 @@
 const express = require("express");
 const axios = require("axios");
-const { ApolloServer } = require("apollo-server-express");
+const { ApolloServer, gql } = require("apollo-server-lambda");
 const { makeExecutableSchema } = require("graphql-tools");
 
 const typeDefs = require("./schema");
@@ -16,9 +16,11 @@ const server = new ApolloServer({
     })
 });
 
-const app = express();
-server.applyMiddleware({ app });
+exports.graphqlHandler = server.createHandler();
 
-app.listen({ port: 4000 }, () =>
-    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
-);
+// const app = express();
+// server.applyMiddleware({ app });
+
+// app.listen({ port: 4000 }, () =>
+//     console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+// );
