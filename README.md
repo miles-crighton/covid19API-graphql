@@ -25,11 +25,15 @@ Run server:
 Navigate to GraphQL playground:
 `http://localhost:4000/graphql`
 
-### Example query
+### Example queries
 
 ```javascript
 {
-  summaryForCountries(countries: ["United Kingdom", "Austria"]) {
+  globalSummary {
+    TotalDeaths
+    TotalConfirmed
+  }
+  countrySummaries(countries: ["Australia", "Italy"]) {
     Country
     TotalRecovered
   }
