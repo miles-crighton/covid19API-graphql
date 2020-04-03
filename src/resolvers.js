@@ -1,9 +1,9 @@
 module.exports = {
     Query: {
-        summaries: async (_, __, { dataSources }) => {
+        allCountrySummaries: async (_, __, { dataSources }) => {
             return dataSources.Covid19API.getAllSummaries();
         },
-        summaryForCountries: async (_, { countries }, { dataSources }) => {
+        countrySummaries: async (_, { countries }, { dataSources }) => {
             return dataSources.Covid19API.getSummaryByCountries({ countries });
         }
     }

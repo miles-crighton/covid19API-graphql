@@ -2,11 +2,11 @@ const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
     type Query {
-        summaries: [Summary]
-        summaryForCountries(countries: [String]): [Summary]
+        allCountrySummaries: [CountrySummary]
+        countrySummaries(countries: [String]): [CountrySummary]
     }
 
-    type Summary {
+    type CountrySummary {
         Country: String
         CountrySlug: String
         NewConfirmed: Int
