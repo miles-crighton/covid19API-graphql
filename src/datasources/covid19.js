@@ -8,10 +8,11 @@ class Covid19API extends RESTDataSource {
 
     async getAllSummaries() {
         const response = await this.get("summary");
-        const summaryData = response.Countries;
-        return Array.isArray(summaryData)
+        let summaryData = response.Countries;
+        summaryData = Array.isArray(summaryData)
             ? summaryData.map(summary => this.summaryReducer(summary))
             : [];
+        return { summaries: summaryData, date: response.Date };
     }
 
     summaryReducer(summary) {
@@ -28,14 +29,15 @@ class Covid19API extends RESTDataSource {
     }
 
     async getSummaryByCountries({ countries }) {
-        let allSummaries = await this.getAllSummaries();
-        return allSummaries.filter(countrySummary => {
+        console.log(countries);
+        let { summaries } = await this.getAllSummaries();
+        return summaries.filter(countrySummary => {
             return countries.includes(countrySummary.Country);
         });
     }
 
     async getWorldwideSummary() {
-        let allSummaries = await this.getAllSummaries();
+        let { summaries, date } = await this.getAllSummaries();
         const summaryKeys = [
             "NewConfirmed",
             "TotalConfirmed",
@@ -49,7 +51,7 @@ class Covid19API extends RESTDataSource {
         const initialGlobalSummary = {};
         summaryKeys.forEach(key => (initialGlobalSummary[key] = 0));
 
-        const reducedSummary = allSummaries.reduce((result, summary) => {
+        const reducedSummary = summaries.reduce((result, summary) => {
             summaryKeys.forEach(key => {
                 if (key in summary) {
                     result[key] += summary[key];
@@ -57,6 +59,8 @@ class Covid19API extends RESTDataSource {
             });
             return result;
         }, initialGlobalSummary);
+
+        reducedSummary["LastUpdated"] = date;
 
         return reducedSummary;
     }
