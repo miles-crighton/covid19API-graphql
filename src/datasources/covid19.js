@@ -33,6 +33,33 @@ class Covid19API extends RESTDataSource {
             return countries.includes(countrySummary.Country);
         });
     }
+
+    async getWorldwideSummary() {
+        let allSummaries = await this.getAllSummaries();
+        const summaryKeys = [
+            "NewConfirmed",
+            "TotalConfirmed",
+            "NewDeaths",
+            "TotalDeaths",
+            "NewRecovered",
+            "TotalRecovered"
+        ];
+
+        //Generate an initialised summary object
+        const initialGlobalSummary = {};
+        summaryKeys.forEach(key => (initialGlobalSummary[key] = 0));
+
+        const reducedSummary = allSummaries.reduce((result, summary) => {
+            summaryKeys.forEach(key => {
+                if (key in summary) {
+                    result[key] += summary[key];
+                }
+            });
+            return result;
+        }, initialGlobalSummary);
+
+        return reducedSummary;
+    }
 }
 
 module.exports = Covid19API;

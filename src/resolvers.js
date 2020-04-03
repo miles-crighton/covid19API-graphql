@@ -5,6 +5,9 @@ module.exports = {
         },
         countrySummaries: async (_, { countries }, { dataSources }) => {
             return dataSources.Covid19API.getSummaryByCountries({ countries });
+        },
+        globalSummary: async (_, __, { dataSources }) => {
+            return dataSources.Covid19API.getWorldwideSummary();
         }
     }
     // Summary: {
