@@ -11,6 +11,20 @@ There are plenty of quality resources currently available to monitor the outbrea
 -   [https://google.com/covid19-map/?hl=en](https://google.com/covid19-map/?hl=en)
 -   [https://coronavirus.jhu.edu/map.html](https://coronavirus.jhu.edu/map.html)
 
+## To run locally
+
+Clone repository:
+`git clone https://github.com/miles-crighton/covid19API-graphql.git`
+
+Install dependencies:
+`npm i`
+
+Run server:
+`npm start`
+
+Navigate to GraphQL playground:
+`http://localhost:4000/graphql`
+
 ### Example query
 
 ```javascript
