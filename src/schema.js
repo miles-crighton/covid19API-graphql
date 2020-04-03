@@ -3,8 +3,10 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
     type Query {
         allCountrySummaries: [CountrySummary]
-        getCountrySummary(country: String): [CountrySummary]
-        getCountrySummaries(countries: [String]): [CountrySummary]
+        countrySummary(country: String): [CountrySummary]
+        countrySummaries(countries: [String]): [CountrySummary]
+        countriesAndProvinces: [Country]
+        countryNames: [String]
         globalSummary: Summary
     }
 
@@ -26,6 +28,11 @@ const typeDefs = gql`
         NewRecovered: Int
         TotalRecovered: Int
         LastUpdated: String
+    }
+
+    type Country {
+        Name: String
+        Provinces: [String]
     }
 
     # extent type Summary {

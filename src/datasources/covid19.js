@@ -64,6 +64,27 @@ class Covid19API extends RESTDataSource {
 
         return reducedSummary;
     }
+
+    async getCountries() {
+        const response = await this.get("countries");
+        return Array.isArray(response)
+            ? response.map(country => this.countryReducer(country))
+            : [];
+    }
+
+    countryReducer(country) {
+        return {
+            Name: country.Country,
+            Provinces: country.Provinces[0] ? country.Provinces : null
+        };
+    }
+
+    async getCountryNames() {
+        const countries = await this.getCountries();
+        return countries.map(country => {
+            return country.Name;
+        });
+    }
 }
 
 module.exports = Covid19API;
