@@ -4,6 +4,17 @@ The Covid19 public API: [https://covid19api.com/#details](https://covid19api.com
 
 This is currently only for learning purposes.
 
+Example query:
+
+```javascript
+{
+  summaryForCountries(countries: ["United Kingdom", "Austria"]) {
+    Country
+    TotalRecovered
+  }
+}
+```
+
 **This is not intended to be used as a source of official information regarding the SARS-CoV-2 pandemic.**
 
 There are plenty of quality resources currently available to monitor the outbreak. Here are a few:
