@@ -7,7 +7,7 @@ provider:
 functions:
     graphql:
         # this is formatted as <FILENAME>.<HANDLER>
-        handler: src/graphql.graphqlHandler
+        handler: src/lambdaIndex.graphqlHandler
         events:
             - http:
                   path: graphql
